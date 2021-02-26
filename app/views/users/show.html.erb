@@ -1,2 +1,18 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="section">
+  <div class="container">
+	  <div class="columns is-centered">
+      <div class="column is-9">
+        <h2 class="title is-2 is-spaced has-text-centered"><%= @user.username %>'s Profile</h2>
+
+        <div id="navbar" class="navbar">
+          <p class="control">
+          </p>
+          <p class="control">
+            <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "button is-info" %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
