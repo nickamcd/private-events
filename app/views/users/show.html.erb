@@ -2,17 +2,25 @@
   <div class="container">
 	  <div class="columns is-centered">
       <div class="column is-9">
-        <h2 class="title is-2 is-spaced has-text-centered"><%= @user.username %>'s Profile</h2>
+        <h1 class="title is-2 is-spaced has-text-centered"><%= @user.username %>'s Profile</h1>
+
+        <h3 class="title is-4"><%= @user.username %>'s Upcoming Events</h3>
+
+        <div class="columns is-multiline">
+          <%= render @user.events.future %>
+        </div>
 
         <div id="navbar" class="navbar">
           <p class="control">
           </p>
-          <p class="control">
-            <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "button is-info" %>
-          </p>
+          <% if user_signed_in? %>
+            <p class="control">
+              <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "button is-info" %>
+            </p>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
 </div>
-      
+       
