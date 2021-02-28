@@ -3,5 +3,27 @@
   <h4>Host: <%= @event.creator.username %></h4>
 </div>
 
+<div>
+  <h6>Attendies:</h6>
+  <ul>
+    <% if User.find(@event.enrollments.accepted.map { |en| en.user_id }).any? %>
+      <div>
+        <% User.find(@event.enrollments.accepted.map { |en| en.user_id }).each do | user | %>
+          <li><p><%= user.username %></p></li>
+      </div>
+  </ul>
+</div>
+
+<div>
+  <h6>Invities:</h6>
+  <ul>
+    <% if User.find(@event.enrollments.invited.map { |en| en.user_id }).any? %>
+      <div>
+        <% User.find(@event.enrollments.accepted.map { |en| en.user_id }).each do | user | %>
+          <li><p><%= user.username %></p></li>
+      </div>
+  </ul>
+</div>
+
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
