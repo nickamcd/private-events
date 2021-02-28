@@ -1,4 +1,7 @@
 <p id="notice"><%= notice %></p>
+<div class="Block">
+  <h4>Host: <%= @event.creator.username %></h4>
+</div>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
