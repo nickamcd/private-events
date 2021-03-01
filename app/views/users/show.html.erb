@@ -5,17 +5,30 @@
         <h1 class="title is-2 is-spaced has-text-centered"><%= @user.username %>'s Profile</h1>
 
         <div class="column has-text-centered">
-            <h3 class="subtitle is-3">Upcoming Events: <%= @user.events.future.count %></h3>
-            <ul>
-              <% if @user.events.future.count.zero? %>
-                <p>No planned parties</p>
-              <% else %>
-                <% @user.attended_events.where('date >= ?', Date.today).each do |event| %>
-                  <li class="has-text-centered"><%=link_to event.name, event_path(event) %></li>
-                <% end %>
+          <h3 class="subtitle is-3">Upcoming Events: <%= @user.events.future.count %></h3>
+          <ul>
+            <% if @user.events.future.count.zero? %>
+              <p>No upcoming events</p>
+            <% else %>
+              <% @user.attended_events.future.each do |event| %>
+                <li class="has-text-centered"><%=link_to event.name, event_path(event) %></li>
               <% end %>
-            </ul>
-          </div>
+            <% end %>
+          </ul>
+        </div>
+
+        <div class="column has-text-centered">
+          <h3 class="subtitle is-3">Previous Attended Events: <%= @user.events.previous.count %></h3>
+          <ul>
+            <% if @user.events.previous.count.zero? %>
+              <p>No previous events attended</p>
+            <% else %>
+              <% @user.attended_events.previous.each do |event| %>
+                <li class="has-text-centered"><%=link_to event.name, event_path(event) %></li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
 
         <div id="navbar" class="navbar">
           <p class="control">
